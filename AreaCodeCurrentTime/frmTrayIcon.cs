@@ -22,13 +22,15 @@ namespace TrayIconExp
         
         //Tray_01: Variable to know when should I exit the form
         private bool EndNow = false;
+        private int NextID = 0;
 
         //Tray_02: Simply wait for the Seconds to elapse
         public void btnMonitor_Click(object sender, EventArgs e)
         {
             lblCurrentTime.Text = "";
             lblCurrentTime.Text = "Searching...";
-            string searchResult = search(txtAreaCode.Text);
+            StartSearch(txtAreaCode.Text);
+            string searchResult = 
             lblCurrentTime.Text = "Searching...";
             if (searchResult != "")
             {
@@ -40,6 +42,66 @@ namespace TrayIconExp
             }
             
         }
+
+        private struct QueryArguments
+        {
+            public QueryArguments(int QueryID, string Query)
+                : this()
+            {
+                this.QueryID = QueryID;
+                this.Query = Query;
+            }
+
+            public int QueryID { get; set; }
+            public string Query { get; set; }
+            public string Result { get; set; }
+        }
+
+
+
+        //Common Functions for the Background Worker Threads
+        private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            Debug.WriteLine(e.ProgressPercentage.ToString());
+        }
+
+        private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Object args = e.Result;
+
+            lblCurrentTime.Text = args.ToString();
+
+            Debug.Write("args.ToString() :" + args.ToString());
+            //args.Result contains the result
+
+            //do something
+        }
+        
+        public void StartSearch(string query)
+        {
+            QueryArguments args = new QueryArguments(NextID++, "");
+
+            args.Query = query;
+
+            BackgroundWorker backgroundWorker1 = new BackgroundWorker();
+            backgroundWorker1.DoWork += new DoWorkEventHandler(backgroundWorker_Analysis_DoWork);
+            backgroundWorker1.ProgressChanged += new ProgressChangedEventHandler(backgroundWorker_ProgressChanged);
+            backgroundWorker1.WorkerReportsProgress = true;
+            backgroundWorker1.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorker_RunWorkerCompleted);
+            backgroundWorker1.RunWorkerAsync(args);
+            
+        }
+
+        private void backgroundWorker_Analysis_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var backgroundWorker = sender as BackgroundWorker;
+            QueryArguments args = (QueryArguments)e.Argument;
+            
+            args.Result = search(args.Query);
+            e.Result = args.Result;
+
+        }
+
 
         private static string GetLocationData(string text)
         {
@@ -60,17 +122,19 @@ namespace TrayIconExp
         private static string search(string query)
         {
             int i = 0;
+            string LabelString = "";
+
             HtmlWeb client = new HtmlWeb();
             HtmlAgilityPack.HtmlDocument doc = client.Load("http://www.allareacodes.com/" + query);
             HtmlNodeCollection Nodes = doc.DocumentNode.SelectNodes("//td");
-            string LabelString = "";
             foreach (var link in Nodes)
             {
                 //Console.WriteLine("Line: " + i);
                 //Console.WriteLine(link.InnerText);
                 if (i == 1)
                 {
-                    LabelString = GetLocationData(link.InnerHtml); //get the state for the area code. ( And country if outside the US)
+                   
+                    LabelString = GetLocationData(link.InnerHtml);//get the state for the area code. ( And country if outside the US)
                     //Console.WriteLine(i + ": " + LabelString);
                 }
                 if (i == 3)

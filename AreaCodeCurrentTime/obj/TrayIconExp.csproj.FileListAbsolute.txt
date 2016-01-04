@@ -1,8 +1,0 @@
-D:\001_C#\TrayIconExp\bin\Debug\TrayIconExp.exe
-D:\001_C#\TrayIconExp\bin\Debug\TrayIconExp.pdb
-D:\001_C#\TrayIconExp\obj\Debug\ResolveAssemblyReference.cache
-D:\001_C#\TrayIconExp\obj\Debug\TrayIconExp.frmTrayIcon.resources
-D:\001_C#\TrayIconExp\obj\Debug\TrayIconExp.Properties.Resources.resources
-D:\001_C#\TrayIconExp\obj\Debug\TrayIconExp.csproj.GenerateResource.Cache
-D:\001_C#\TrayIconExp\obj\Debug\TrayIconExp.exe
-D:\001_C#\TrayIconExp\obj\Debug\TrayIconExp.pdb
