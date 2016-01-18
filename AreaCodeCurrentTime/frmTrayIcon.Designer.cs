@@ -24,7 +24,7 @@ namespace TrayIconExp
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        //region Windows Form Designer generated code
 
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -59,8 +59,8 @@ namespace TrayIconExp
             this.txtAreaCode.Location = new System.Drawing.Point(99, 6);
             this.txtAreaCode.Name = "txtAreaCode";
             this.txtAreaCode.Size = new System.Drawing.Size(104, 26);
+            this.txtAreaCode.KeyDown += new KeyEventHandler(tb_KeyDown);
             this.txtAreaCode.TabIndex = 3;
-            this.txtAreaCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_KeyDown);
             // 
             // btnMonitor
             // 
@@ -109,10 +109,12 @@ namespace TrayIconExp
             this.mnuExit.Click += new System.EventHandler(this.mnuExit_Click);
             // 
             // TrayIcon
-            //
+            // 
+            this.TrayIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.TrayIcon.BalloonTipText = "Hi!";
+            this.TrayIcon.BalloonTipTitle = "Boo";
             this.TrayIcon.ContextMenuStrip = this.MenuConT;
-            this.TrayIcon.Icon = new Icon("icon.ico");
-            //this.TrayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("TrayIcon.Icon")));
+            this.TrayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("TrayIcon.Icon")));
             this.TrayIcon.Text = "Area Code Search";
             this.TrayIcon.Visible = true;
             this.TrayIcon.DoubleClick += new System.EventHandler(this.TrayIcon_DoubleClick);
@@ -129,7 +131,6 @@ namespace TrayIconExp
             this.Controls.Add(this.label3);
             this.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.White;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmTrayIcon";
             this.Text = "Area Code Current Time Zone Search";
@@ -152,7 +153,7 @@ namespace TrayIconExp
             // Activate the form.
             this.Show();
         }
-        
+
 
         private void tb_KeyDown(object sender, KeyEventArgs e)
         {
@@ -162,7 +163,7 @@ namespace TrayIconExp
             }
         }
 
-        #endregion
+        //endregion
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtAreaCode;
         private System.Windows.Forms.Button btnMonitor;
@@ -173,4 +174,3 @@ namespace TrayIconExp
         private System.Windows.Forms.NotifyIcon TrayIcon;
     }
 }
-
