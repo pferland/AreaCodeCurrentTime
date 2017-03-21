@@ -8,8 +8,8 @@
     <ProjectGuid>{B00A0042-B83D-42E9-BC22-187797C0CF35}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TrayIconExp</RootNamespace>
-    <AssemblyName>TrayIconExp</AssemblyName>
+    <RootNamespace>AreaCodeCurrentTime</RootNamespace>
+    <AssemblyName>AreaCodeCurrentTime</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -46,7 +46,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\Build\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -54,6 +54,7 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>

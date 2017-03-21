@@ -1,8 +1,0 @@
-C:\GitHub\AreaCodeCurrentTime\Build\TrayIconExp.exe.config
-C:\GitHub\AreaCodeCurrentTime\Build\TrayIconExp.exe
-C:\GitHub\AreaCodeCurrentTime\Build\TrayIconExp.pdb
-C:\GitHub\AreaCodeCurrentTime\AreaCodeCurrentTime\obj\Release\TrayIconExp.frmTrayIcon.resources
-C:\GitHub\AreaCodeCurrentTime\AreaCodeCurrentTime\obj\Release\TrayIconExp.Properties.Resources.resources
-C:\GitHub\AreaCodeCurrentTime\AreaCodeCurrentTime\obj\Release\TrayIconExp.csproj.GenerateResource.Cache
-C:\GitHub\AreaCodeCurrentTime\AreaCodeCurrentTime\obj\Release\TrayIconExp.exe
-C:\GitHub\AreaCodeCurrentTime\AreaCodeCurrentTime\obj\Release\TrayIconExp.pdb

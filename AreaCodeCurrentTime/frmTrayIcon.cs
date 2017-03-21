@@ -109,11 +109,11 @@ namespace TrayIconExp
             string pattern = "<a.*?>(.*?)<\\/a>";
 
             MatchCollection matches = Regex.Matches(text, pattern);
-            Console.WriteLine("Matches found: {0}", matches.Count);
+            Debug.WriteLine("Matches found: {0}", matches.Count);
 
             if (matches.Count > 0)
             {
-                Console.WriteLine("Matched: " + matches[0].Groups[1]);
+                Debug.WriteLine("Matched: " + matches[0].Groups[1]);
                 retString = matches[0].Groups[1].ToString().Replace("<br>", ", ");
             }
             return retString;
@@ -129,35 +129,27 @@ namespace TrayIconExp
             HtmlNodeCollection Nodes = doc.DocumentNode.SelectNodes("//td");
             foreach (var link in Nodes)
             {
-                //Console.WriteLine("Line: " + i);
-                //Console.WriteLine(link.InnerText);
+                Debug.WriteLine("Line: " + i);
+                Debug.WriteLine(link.InnerText);
                 if (i == 1)
                 {
                    
                     LabelString = GetLocationData(link.InnerHtml);//get the state for the area code. ( And country if outside the US)
-                    //Console.WriteLine(i + ": " + LabelString);
+                    Debug.WriteLine(i + ": " + LabelString);
                 }
                 if (i == 3)
                 {
-                    if (link.InnerHtml == "Area Code")
-                    {
-                        break;
-                    }
                     LabelString = link.InnerHtml + " " + LabelString; //get the city for the area code.
-                    //Console.WriteLine(i + ": " + LabelString);
+                    Debug.WriteLine(i + ": " + LabelString);
                 }
                 if (i == 5)
                 {
-                    LabelString = LabelString + " " + link.InnerHtml; //current time for the area code.
-                    //Console.WriteLine(i + ": " + LabelString);
-                }
-                if (i == 7)
-                {
-                    LabelString = LabelString + " " + link.InnerHtml; //current time for the area code.
-                    //Console.WriteLine(i + ": " + LabelString);
+                    LabelString = LabelString + " " + link.InnerHtml; //timezone and current time for the area code.
+                    Debug.WriteLine(i + ": " + LabelString);
                     break;
                 }
                 i++;
+                Debug.WriteLine("---------------------------------------");
             }
             return LabelString;
         }
